@@ -28,9 +28,9 @@ mkdir -p /data/script
 core_num=`cat /proc/cpuinfo | grep "processor" | wc -l`
 let j=$core_num+1
 
-apt-get update
-apt-get dist-upgrade
-apt-get install unzip make gcc-4.6 g++-4.6 build-essential\
+apt-get -y update
+apt-get -y dist-upgrade
+apt-get -y install unzip make gcc-4.6 g++-4.6 build-essential\
 libxml2-dev libssl-dev pkg-config \
 libbz2-dev libcurl3-dev libvpx-dev \
 libjpeg-dev libpng-dev libxmp-dev \
