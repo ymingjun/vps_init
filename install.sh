@@ -30,7 +30,7 @@ let j=$core_num+1
 
 apt-get -y update
 apt-get -y dist-upgrade
-apt-get -y install unzip make gcc-4.6 g++-4.6 build-essential\
+apt-get -y install unzip make gcc-4.6 g++-4.6 build-essential \
 libxml2-dev libssl-dev pkg-config \
 libbz2-dev libcurl3-dev libvpx-dev \
 libjpeg-dev libpng-dev libxmp-dev \
@@ -61,6 +61,8 @@ cd ${php}
 ./configure \
 --enable-libgcc \
 --enable-fpm \
+--with-fpm-user=php \
+--with-fpm-group=php \
 --with-libxml-dir \
 --with-openssl \
 --with-zlib \
@@ -144,6 +146,8 @@ cd ${nginx}
 --pid-path=/data/nginx/logs/nginx.pid \
 --error-log-path=/data/nginx/logs/error.log \
 --http-log-path=/data/nginx/logs/access.log \
+--user=nginx \
+--group=nginx \
 --without-select_module \
 --without-poll_module \
 --with-file-aio \
