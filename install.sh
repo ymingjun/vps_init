@@ -25,7 +25,7 @@ mkdir -p /data/php/logs
 
 mkdir -p /data/firewall
 mkdir -p /data/crons
-mkdir -p /data/scripts
+mkdir -p /data/script
 
 apt-get -y update
 apt-get -y dist-upgrade
@@ -49,145 +49,17 @@ update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 40
 update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.6 40
 
 src=`pwd`
-
-#php 5.5
-#http://cn1.php.net/distributions/php-5.5.0.tar.bz2
-php=php-5.5.0
-wget "http://cn1.php.net/distributions/${php}.tar.bz2"
-tar xvf ${php}.tar.bz2
-cd ${php}
-
-./configure \
---enable-libgcc \
---enable-fpm \
---with-fpm-user=php \
---with-fpm-group=php \
---with-libxml-dir \
---with-openssl \
---with-zlib \
---with-zlib-dir \
---enable-bcmath \
---with-bz2 \
---enable-calendar \
---with-curl \
---enable-exif \
---with-pcre-dir \
---enable-ftp \
---with-gd \
---with-vpx-dir \
---with-jpeg-dir \
---with-png-dir \
---with-xpm-dir \
---with-freetype-dir \
---with-t1lib \
---enable-gd-native-ttf \
---enable-gd-jis-conv \
---with-gettext \
---with-gmp \
---with-mhash \
---enable-intl \
---enable-mbstring \
---with-libmbfl \
---with-onig \
---with-mcrypt \
---with-mysql \
---with-mysql-sock \
---with-mysqli \
---enable-opcache \
---enable-pcntl \
---with-pdo-mysql \
---with-pspell \
---with-libedit \
---with-readline \
---with-recode \
---with-mm \
---enable-shmop \
---enable-sockets \
---enable-sysvmsg \
---enable-sysvsem \
---enable-sysvshm \
---with-tidy \
---with-xmlrpc \
---with-iconv-dir \
---with-xsl \
---enable-zip \
---enable-mysqlnd \
---with-pear \
---with-tsrm-pthreads \
---enable-shared \
---enable-static \
---enable-fast-install \
---with-openssl-dir \
---sysconfdir=/data/php/conf \
---with-config-file-path=/data/php/conf 
-
-make & make install
-
+########php#####
+bash ./php_init.sh
 #####mongodb#####
 cd ${src}
-mongo=mongodb-src-r2.4.5
-wget http://downloads.mongodb.org/src/${mongo}.tar.gz
-tar xvf ${mongo}.tar.gz
-cd ${mongo}
-scons all
-scons --full install
-
+bash ./mongo_init.sh
 #####nginx######
 cd ${src}
-nginx=nginx-1.5.2
-wget http://nginx.org/download/${nginx}.tar.gz
-tar xvf ${nginx}.tar.gz
-cd ${nginx}
-
-./configure \
---sbin-path=/usr/local/sbin/nginx \
---conf-path=/data/nginx/conf/nginx.conf \
---pid-path=/data/nginx/logs/nginx.pid \
---error-log-path=/data/nginx/logs/error.log \
---http-log-path=/data/nginx/logs/access.log \
---user=nginx \
---group=nginx \
---without-select_module \
---without-poll_module \
---with-file-aio \
---with-http_ssl_module \
---with-http_spdy_module \
---with-http_realip_module \
---with-http_addition_module \
---with-http_xslt_module  \
---with-http_image_filter_module \
---with-http_geoip_module \
---with-http_sub_module \
---with-http_dav_module  \
---with-http_flv_module  \
---with-http_mp4_module  \
---with-http_gunzip_module \
---with-http_gzip_static_module \
---with-http_random_index_module \
---with-http_secure_link_module \
---with-http_degradation_module \
---with-http_stub_status_module \
---with-http_perl_module \
---with-mail \
---with-mail_ssl_module \
---with-google_perftools_module \
---with-pcre  \
---with-pcre-jit \
---with-libatomic 
-
-make & make install
-
+bash ./nginx_init.sh
 ###nodejs####
 cd ${src}
-node=node-v0.10.12
-wget http://nodejs.org/dist/v0.10.12/${node}.tar.gz
-tar xvf ${node}.tar.gz
-cd ${node}
-
-./configure
-make & make install
-
-
+bash ./node_init.sh
 ###
 cd ${src}
 cp -rf data/* /data/
@@ -199,6 +71,3 @@ chown -R mongo /data/mongo
 chown -R php /data/php
 chown -R nginx /data/nginx
 
-
-############
-pecl install mongo

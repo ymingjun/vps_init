@@ -1,12 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-# chkconfig: 35 85 15
-# description: Mongo is a scalable, document-oriented database.
-# processname: mongod
-# config: /etc/mongod.conf
-# pidfile: /var/run/mongo/mongo.pid
-
-MONGOHOME="/usr/local/"
+MONGOHOME="/usr/local"
 CONFIGFILE="/data/mongo/conf/mongo.conf"
 DBPATH=`awk -F= '/^dbpath[ ]*=/{print $2}' "$CONFIGFILE" |sed -e 's/^[ ]*//'`
 COMMAND="$MONGOHOME/bin/mongod"
@@ -26,19 +20,19 @@ fi
 start()
 {
   echo -n $"Starting mongod: "
-  daemon $COMMAND $OPT
+  sudo -u $USER $COMMAND $OPT
   RETVAL=$?
   echo
-  [ $RETVAL -eq 0 ] && touch /var/lock/subsys/mongod
+  [ $RETVAL -eq 0 ] 
 }
 
 stop()
 {
   echo -n $"Stopping mongod: "
-  killproc -p "$DBPATH"/mongod.lock -d 300 "$COMMAND"
+  kill `cat ${DBPATH}/mongod.lock`
   RETVAL=$?
   echo
-  [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/mongod
+  [ $RETVAL -eq 0 ] 
 }
 case "$1" in
   start)
@@ -50,10 +44,6 @@ case "$1" in
   restart)
     stop
     start
-    ;;
-  status)
-    status $mongod
-    RETVAL=$?
     ;;
   * )
     usage
