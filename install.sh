@@ -1,5 +1,7 @@
 #!/bin/bash
 
+screen
+
 #add op group
 groupadd op
 useradd -M -r -s /usr/sbin/nologin mongo
@@ -23,10 +25,7 @@ mkdir -p /data/php/logs
 
 mkdir -p /data/firewall
 mkdir -p /data/crons
-mkdir -p /data/script
-
-core_num=`cat /proc/cpuinfo | grep "processor" | wc -l`
-let j=$core_num+1
+mkdir -p /data/scripts
 
 apt-get -y update
 apt-get -y dist-upgrade
@@ -122,7 +121,7 @@ cd ${php}
 --sysconfdir=/data/php/conf \
 --with-config-file-path=/data/php/conf 
 
-make -j ${j} & make install
+make & make install
 
 #####mongodb#####
 cd ${src}
@@ -176,7 +175,7 @@ cd ${nginx}
 --with-pcre-jit \
 --with-libatomic 
 
-make -j ${j} & make install
+make & make install
 
 ###nodejs####
 cd ${src}
@@ -186,12 +185,12 @@ tar xvf ${node}.tar.gz
 cd ${node}
 
 ./configure
-make -j ${j} & make install
+make & make install
 
 
 ###
 cd ${src}
-cp -rf data/* /data/*
+cp -rf data/* /data/
 chown -R root:op /data
 chmod -R 775 /data
 chmod -R g+s /data
