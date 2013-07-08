@@ -32,7 +32,7 @@ apt-get -y dist-upgrade
 apt-get -y install unzip make gcc-4.6 g++-4.6 build-essential \
 libxml2-dev libssl-dev pkg-config \
 libbz2-dev libcurl3-dev libvpx-dev \
-libjpeg-dev libpng-dev libxmp-dev \
+libjpeg-dev libpng-dev libxpm-dev \
 libfreetype6-dev libt1-dev libgmp-dev \
 libicu-dev libbison-dev libmcrypt-dev \
 libpspell-dev bison libedit-dev \
