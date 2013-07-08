@@ -13,8 +13,8 @@ cd ${php}
 ./configure \
 --enable-libgcc \
 --enable-fpm \
---with-fpm-user=php \
---with-fpm-group=php \
+--with-fpm-user=php-fpm \
+--with-fpm-group=php-fpm \
 --with-libxml-dir \
 --with-openssl \
 --with-zlib \
