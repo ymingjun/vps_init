@@ -5,7 +5,7 @@ CONFIGFILE="/data/mongo/conf/mongod.conf"
 DBPATH=`awk -F= '/^dbpath[ ]*=/{print $2}' "$CONFIGFILE" |sed -e 's/^[ ]*//'`
 COMMAND="$MONGOHOME/bin/mongod"
 OPT="--config $CONFIGFILE"
-USER="mongo"
+USER="mongod"
 mongod=${MONGOD-$COMMAND}
 
 usage() {

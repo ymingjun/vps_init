@@ -4,7 +4,7 @@ screen
 
 #add op group
 groupadd op
-useradd -M -r -s /usr/sbin/nologin mongo
+useradd -M -r -s /usr/sbin/nologin mongod
 useradd -M -r -s /usr/sbin/nologin php-fpm
 useradd -M -r -s /usr/sbin/nologin nginx
 
@@ -67,7 +67,6 @@ chown -R root:op /data
 chmod -R 775 /data
 chmod -R g+s /data
 
-chown -R mongo /data/mongo
+chown -R mongod /data/mongo
 chown -R php-fpm /data/php
 chown -R nginx /data/nginx
-
