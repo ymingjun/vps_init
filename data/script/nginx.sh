@@ -1,7 +1,7 @@
 #!/bin/bash
 
-PID_FILE="/data/nginx/logs/nginx.pid"
-COMMAND="nginx"
+PID_FILE="/data/php/logs/php-fpm.pid"
+COMMAND="php-fpm"
 
 usage() {
   echo "Usage: $0 {start|stop|restart}"
@@ -14,7 +14,7 @@ fi
 
 start()
 {
-  echo -n $"Starting $COMMAND: "
+  echo -n $"Starting php-fpm: "
   $COMMAND
   RETVAL=$?
   echo
@@ -23,7 +23,7 @@ start()
 
 stop()
 {
-  echo -n $"Stopping $COMMAND: "
+  echo -n $"Stopping php-fpm: "
   kill `cat $PID_FILE`
   RETVAL=$?
   echo

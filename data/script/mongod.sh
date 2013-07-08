@@ -1,7 +1,7 @@
 #!/bin/bash
 
 MONGOHOME="/usr/local"
-CONFIGFILE="/data/mongo/conf/mongo.conf"
+CONFIGFILE="/data/mongo/conf/mongod.conf"
 DBPATH=`awk -F= '/^dbpath[ ]*=/{print $2}' "$CONFIGFILE" |sed -e 's/^[ ]*//'`
 COMMAND="$MONGOHOME/bin/mongod"
 OPT="--config $CONFIGFILE"
