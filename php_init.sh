@@ -3,8 +3,11 @@
 #php 5.5
 #http://cn1.php.net/distributions/php-5.5.0.tar.bz2
 php=php-5.5.0
-wget "http://cn1.php.net/distributions/${php}.tar.bz2"
-tar xvf ${php}.tar.bz2
+
+if [ ! -d $php ]; then
+    wget "http://cn1.php.net/distributions/${php}.tar.bz2"
+    tar xvf ${php}.tar.bz2
+fi
 cd ${php}
 
 ./configure \
@@ -71,6 +74,6 @@ cd ${php}
 --sysconfdir=/data/php/conf \
 --with-config-file-path=/data/php/conf 
 
-make & make install
+make && make install
 
 pecl install mongo

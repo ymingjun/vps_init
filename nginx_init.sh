@@ -1,7 +1,10 @@
 #! /bin/bash
+
 nginx=nginx-1.5.2
-wget http://nginx.org/download/${nginx}.tar.gz
-tar xvf ${nginx}.tar.gz
+if [ ! -d $nginx ]; then
+    wget http://nginx.org/download/${nginx}.tar.gz
+    tar xvf ${nginx}.tar.gz
+fi
 cd ${nginx}
 
 ./configure \
@@ -40,4 +43,4 @@ cd ${nginx}
 --with-pcre-jit \
 --with-libatomic 
 
-make & make install
+make && make install

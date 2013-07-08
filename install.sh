@@ -1,7 +1,5 @@
 #!/bin/bash
 
-screen
-
 #add op group
 groupadd op
 useradd -M -r -s /usr/sbin/nologin mongod
