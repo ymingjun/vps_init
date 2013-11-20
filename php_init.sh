@@ -5,7 +5,7 @@
 php=php-5.5.6
 
 if [ ! -d $php ]; then
-    wget "http://cn1.php.net/distributions/${php}.tar.bz2"
+    wget "http://cn2.php.net/distributions/${php}.tar.bz2"
     tar xvf ${php}.tar.bz2
 fi
 cd ${php}
