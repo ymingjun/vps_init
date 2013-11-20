@@ -1,6 +1,6 @@
 #! /bin/bash
 
-nginx=nginx-1.5.2
+nginx=nginx-1.5.7
 if [ ! -d $nginx ]; then
     wget http://nginx.org/download/${nginx}.tar.gz
     tar xvf ${nginx}.tar.gz

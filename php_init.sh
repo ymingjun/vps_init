@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#php 5.5
-#http://cn1.php.net/distributions/php-5.5.0.tar.bz2
-php=php-5.5.0
+#php 5.5.6
+#http://cn2.php.net/distributions/php-5.5.6.tar.bz2
+php=php-5.5.6
 
 if [ ! -d $php ]; then
     wget "http://cn1.php.net/distributions/${php}.tar.bz2"
