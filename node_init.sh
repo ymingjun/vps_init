@@ -1,5 +1,5 @@
 #! /bin/bash
-version=v10.0.22
+version=v0.10.22
 node=node-$version
 if [ ! -d $node ]; then
     wget http://nodejs.org/dist/${version}/${node}.tar.gz
