@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 #add op group
 groupadd op
 useradd -M -r -s /usr/sbin/nologin mongod
@@ -47,6 +48,10 @@ update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 40
 update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.6 40
 
 src=`pwd`
+
+###swap####
+cd ${src}
+bash add_swap.sh
 ########php#####
 bash ./php_init.sh
 #####mongodb#####
@@ -58,6 +63,10 @@ bash ./nginx_init.sh
 ###nodejs####
 cd ${src}
 bash ./node_init.sh
+###gcc_arm####
+cd ${src}
+bash gcc_arm.sh
+
 ###
 cd ${src}
 cp -rf data/* /data/
