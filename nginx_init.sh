@@ -1,6 +1,8 @@
 #! /bin/bash
 
-nginx=nginx-1.5.7
+git clone https://github.com/arut/nginx-rtmp-module.git
+
+nginx=nginx-1.5.8
 if [ ! -d $nginx ]; then
     wget http://nginx.org/download/${nginx}.tar.gz
     tar xvf ${nginx}.tar.gz
@@ -41,6 +43,7 @@ cd ${nginx}
 --with-google_perftools_module \
 --with-pcre  \
 --with-pcre-jit \
---with-libatomic 
+--with-libatomic \
+--add-module=../nginx-rtmp-module
 
 make && make install
